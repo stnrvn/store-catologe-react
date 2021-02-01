@@ -10,7 +10,7 @@ class ProductCard extends React.Component {
             <img src={ product.image } className="card-img-top" alt={ product.title } style={{ width: '100%', height: '40vh', objectFit: 'contain' }} />
                     <h5 className="card-title text-center">{ product.title }</h5>
                 </div>
-                    <p className="card-text text-center">${ product.price }</p>
+                    <p className="card-text text-center">${ product.price.toLocaleString('en-US') }</p>
                     <a href="#" className="btn btn-primary">Go somewhere</a>
             </div>
         </div>
