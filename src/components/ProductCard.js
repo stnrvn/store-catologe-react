@@ -9,8 +9,8 @@ class ProductCard extends React.Component {
             <div className="card-body">
             <img src={ product.image } className="card-img-top" alt={ product.title } style={{ width: '100%', height: '40vh', objectFit: 'contain' }} />
                     <h5 className="card-title text-center">{ product.title }</h5>
-                    <p className="card-text text-center">{ product.price }</p>
                 </div>
+                    <p className="card-text text-center">${ product.price }</p>
                     <a href="#" className="btn btn-primary">Go somewhere</a>
             </div>
         </div>
