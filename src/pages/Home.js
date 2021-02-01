@@ -34,11 +34,13 @@ class Home extends React.Component {
 
     return (
       <div className="container">
+        <div className="row">
         {
           products.map(product => {
             return <ProductCard key={ product.id } product={ product } />
           })
         }
+        </div>
       </div>
     )
   }
