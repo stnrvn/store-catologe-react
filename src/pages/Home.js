@@ -6,16 +6,7 @@ class Home extends React.Component {
     super ()
 
     this.state = {
-      products: [
-        {
-          id: 0,
-          title: '',
-          price: 0,
-          description: '',
-          category: '',
-          image: ''
-        }
-      ]
+      products: []
     }
   }
 
