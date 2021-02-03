@@ -3,13 +3,13 @@ import React from 'react'
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from 'react-router-dom'
 
 import {
   Home,
-  Detail
+  Detail,
+  Favorite
 } from './pages'
 
 function App () {
@@ -21,6 +21,9 @@ function App () {
         </Route>
         <Route path='/detail/:id'>
           <Detail />
+        </Route>
+        <Route path='/favorite'>
+          <Favorite />
         </Route>
       </Switch>
     </Router>

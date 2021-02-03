@@ -1,61 +1,37 @@
-import { useEffect } from 'react'
-import useFetch from '../hooks/useFetch'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { favorite } from '../store/actions/favoriteAction'
+import { useEffect } from 'react'
 
-function ProductCard () {
-  const url = 'https://fakestoreapi.com/products'
-  const { data: products, loading, error } = useFetch(url)
 
-  // useEffect ( () => {
-  //     const modal = new bootstrap.Modal(document.getElementById("myModal"), {})
-  //       document.onreadystatechange = function () {
-  //       modal.show();
-  //     }
-  // })
+function ProductCard (props) {
+  const { favorites } = useSelector((state) => state)
+  const dispatch = useDispatch()
 
-  if (error) return (
-    <div className="modal" id="myModal" tabindex="-1">
-      <div className="modal-dialog">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title">Modal title</h5>
-            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div className="modal-body">
-            <p>Modal body text goes here.</p>
-          </div>
-          <div className="modal-footer">
-            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" className="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
+  useEffect(() => {
+    console.log(favorites, 'ini favor')
+  }, [favorites])
 
-  else if (loading) return (
-    <div className="spinner-border m-5" role="status">
-      <span className="visually-hidden">Loading...</span>
-    </div>
-  )
+  function addFav () {
+    dispatch(favorite(props.product))
+    console.log(props.product, 'berhasil!')
+  }
+
   return (
     <div className="container">
       <div className="row">
-        { products.map(product => {
-            return (
-              <div className="col-lg-3 mt-3" key={ product.id }>
+              <div className="col-lg-3 mt-3">
                 <div className="card border-light shadow h-100" style={{ width: 'auto' }}>
                     <div className="card-body">
-                      <img src={ product.image } className="card-img-top" alt={ product.title } style={{ width: '100%', height: '40vh', objectFit: 'contain' }} />
-                      <h5 className="card-title text-center">{ product.title }</h5>
+                      <img src={ props.product.image } className="card-img-top" alt={ props.product.title } style={{ width: '100%', height: '40vh', objectFit: 'contain' }} />
+                      <h5 className="card-title text-center">{ props.title } title</h5>
                     </div>
-                      <p className="card-text text-center" style={{ color: 'green'}}>${ product.price.toLocaleString('en-US') }</p>
-                      <Link to={`/detail/${product.id}`} className="btn btn-primary">Detail</Link>
+                      <p className="card-text text-center" style={{ color: 'green'}}>${ props.product.price }</p>
+                      <button onClick={addFav}>Favorite</button>
+                      <Link to={`/detail/${props.product.id}`} className="btn btn-primary">Detail</Link>
+                      <Link to={`/favorite`} className="btn btn-primary">favorite</Link>
                 </div>
               </div>
-            )
-          })
-        }
       </div>
     </div>
   )
