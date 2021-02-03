@@ -1,37 +1,41 @@
+import { useEffect } from 'react'
 import useFetch from '../hooks/useFetch'
+import { Link } from 'react-router-dom'
 
 function ProductCard () {
-  const url = 'https://fakestoreapi.com/productss'
+  const url = 'https://fakestoreapi.com/products'
   const { data: products, loading, error } = useFetch(url)
 
+  // useEffect ( () => {
+  //     const modal = new bootstrap.Modal(document.getElementById("myModal"), {})
+  //       document.onreadystatechange = function () {
+  //       modal.show();
+  //     }
+  // })
+
   if (error) return (
-    // <div className="modal" tabindex="-1">
-    //   <div className="modal-dialog">
-    //     <div className="modal-content">
-    //       <div className="modal-header">
-    //         <h5 className="modal-title">Modal title</h5>
-    //         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    //       </div>
-    //       <div className="modal-body">
-    //         <p>Modal body text goes here.</p>
-    //       </div>
-    //       <div className="modal-footer">
-    //         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-    //         <button type="button" className="btn btn-primary">Save changes</button>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
-    <>
-      <h1>error!</h1>
-    </>
+    <div className="modal" id="myModal" tabindex="-1">
+      <div className="modal-dialog">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title">Modal title</h5>
+            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div className="modal-body">
+            <p>Modal body text goes here.</p>
+          </div>
+          <div className="modal-footer">
+            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" className="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 
   else if (loading) return (
-    <div className="container">
-    <div className="spinner-grow" role="status" style={{ position: 'relative', left: 'calc(50% - 50px)', top: '50%'}}>
+    <div className="spinner-border m-5" role="status">
       <span className="visually-hidden">Loading...</span>
-    </div>
     </div>
   )
   return (
@@ -46,7 +50,7 @@ function ProductCard () {
                       <h5 className="card-title text-center">{ product.title }</h5>
                     </div>
                       <p className="card-text text-center" style={{ color: 'green'}}>${ product.price.toLocaleString('en-US') }</p>
-                      <button className="btn btn-primary">Detail</button>
+                      <Link to={`/detail/${product.id}`} className="btn btn-primary">Detail</Link>
                 </div>
               </div>
             )

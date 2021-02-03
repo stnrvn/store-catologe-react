@@ -4,19 +4,20 @@ function useFetch (url) {
   const [ data, setData ] = useState([])
   const [ loading, setLoading ] = useState(false)
   const [ error, setError ] = useState(null)
+  const [ errModal, setErrModal ] = useState(false)
 
   useEffect(() => {
     setLoading(true)
     fetch(url)
       .then(res => res.json())
       .then(data => {
-        let newData = [...data]
-        setData(newData)
+        setData(data)
         setLoading(false)
       })
       .catch(err => {
         setError(err)
         setLoading(false)
+        setErrModal(true)
       })
   }, [url])
 
@@ -24,7 +25,8 @@ function useFetch (url) {
     data,
     setData,
     loading,
-    error
+    error,
+    errModal
   }
 }
 
