@@ -9,17 +9,13 @@ function ProductCard (props) {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    console.log(favorites, 'ini favor')
   }, [favorites])
 
   function addFav () {
     dispatch(favorite(props.product))
-    console.log(props.product, 'berhasil!')
   }
 
   return (
-    <div className="container">
-      <div className="row">
               <div className="col-lg-3 mt-3">
                 <div className="card border-light shadow h-100" style={{ width: 'auto' }}>
                     <div className="card-body">
@@ -32,8 +28,6 @@ function ProductCard (props) {
                       <Link to={`/favorite`} className="btn btn-primary">favorite</Link>
                 </div>
               </div>
-      </div>
-    </div>
   )
 }
 

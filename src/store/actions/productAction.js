@@ -8,8 +8,6 @@ export const fetchData = (data) => {
 
         const data = await response.json()
 
-        // console.log(data, 'data dari action')
-
         dispatch({
           type: 'FETCH_DATA',
           payload: data
@@ -27,13 +25,11 @@ export const getDetail = (id) => {
         const response = await fetch(`https://fakestoreapi.com/products/${id}`)
 
         const data = await response.json()
-        console.log(data, 'data by id from action')
 
         dispatch({
           type: 'PRODUCT_BY_ID',
           payload: data
         })
-
 
       } catch (error) {
         console.log(error)

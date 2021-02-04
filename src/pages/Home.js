@@ -10,9 +10,10 @@ function Home () {
   }))
 
   const dispatch = useDispatch()
-  
+
   useEffect(() => {
     dispatch(fetchData())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   
   // if (error) return (
@@ -47,11 +48,17 @@ function Home () {
         isLoading ? (
           <div className="spinner-border m-5" role="status"></div>
         ) : (
-          products.products.map(product => {
-            return (
-              <ProductCard key="product.id" product={ product } isLoading={isLoading} />
-            )
-          })
+          <div className="container">
+            <div className="row">
+              {
+              products.products.map(product => {
+                return (
+                  <ProductCard key={ product.id } product={ product } isLoading={isLoading} />
+                )
+              })
+            }
+          </div>
+          </div>
         )
       }
     </>
