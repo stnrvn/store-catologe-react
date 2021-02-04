@@ -4,10 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchData } from '../store/actions/productAction'
 
 function Home () {
-  const { products, isLoading } = useSelector((state) => ({
-    products: state.products,
-    isLoading: state.isLoading
-  }))
+  const { products, isLoading } = useSelector((state) => state.products)
 
   const dispatch = useDispatch()
 
@@ -35,12 +32,6 @@ function Home () {
   //     </div>
   //   </div>
   // )
-  
-  if (isLoading) return (
-    <div className="spinner-border m-5" role="status">
-      <span className="visually-hidden">Loading...</span>
-    </div>
-  )
 
   return (
     <>
@@ -51,7 +42,7 @@ function Home () {
           <div className="container">
             <div className="row">
               {
-              products.products.map(product => {
+              products.map(product => {
                 return (
                   <ProductCard key={ product.id } product={ product } isLoading={isLoading} />
                 )

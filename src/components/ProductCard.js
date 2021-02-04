@@ -19,13 +19,13 @@ function ProductCard (props) {
               <div className="col-lg-3 mt-3">
                 <div className="card border-light shadow h-100" style={{ width: 'auto' }}>
                     <div className="card-body">
-                      <img src={ props.product.image } className="card-img-top" alt={ props.product.title } style={{ width: '100%', height: '40vh', objectFit: 'contain' }} />
+                      <img src={ props.product.image } className="card-img-top" alt={ props.product.title } style={{ width: '100%', height: '20vh', objectFit: 'contain' }} />
                       <h5 className="card-title text-center">{ props.title } title</h5>
                     </div>
                       <p className="card-text text-center" style={{ color: 'green'}}>${ props.product.price }</p>
-                      <button onClick={addFav}>Favorite</button>
+                      <button onClick={addFav} className="btn btn-dark">Favorite</button>
                       <Link to={`/detail/${props.product.id}`} className="btn btn-primary">Detail</Link>
-                      <Link to={`/favorite`} className="btn btn-primary">favorite</Link>
+                      <Link to={`/favorite`} className="btn btn-danger">Favorite page</Link>
                 </div>
               </div>
   )
