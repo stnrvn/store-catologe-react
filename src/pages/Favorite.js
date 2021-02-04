@@ -3,10 +3,10 @@ import FavoriteCard from '../components/FavoriteCard'
 import { useEffect } from 'react'
 
 function Favorite () {
-  const { favorites } = useSelector((state) => state)
+  const { favorites } = useSelector((state) => state.favorites)
 
   useEffect(() => {
-    console.log(favorites)
+    console.log(favorites, 'data dari favorite')
   }, [favorites])
 
   return (

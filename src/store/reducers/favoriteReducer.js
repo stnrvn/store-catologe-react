@@ -3,7 +3,7 @@ const initialState = {
 }
 
 const favoriteReducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case 'ADD_FAVORITE':
       return {
         ...state,

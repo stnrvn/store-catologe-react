@@ -1,32 +1,41 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ProductCard from '../components/ProductCard'
-import useFetch from '../hooks/useFetch'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchData } from '../store/actions/productAction'
 
 function Home () {
-  const url = 'https://fakestoreapi.com/products'
-  const { data: products, loading, error } = useFetch(url)
-  
-  if (error) return (
-    <div className="modal" id="myModal" tabindex="-1">
-      <div className="modal-dialog">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title">Modal title</h5>
-            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div className="modal-body">
-            <p>Modal body text goes here.</p>
-          </div>
-          <div className="modal-footer">
-            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" className="btn btn-primary">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
+  const { products, isLoading } = useSelector((state) => ({
+    products: state.products,
+    isLoading: state.isLoading
+  }))
 
-  else if (loading) return (
+  const dispatch = useDispatch()
+  
+  useEffect(() => {
+    dispatch(fetchData())
+  }, [])
+  
+  // if (error) return (
+  //   <div className="modal" id="myModal" tabindex="-1">
+  //     <div className="modal-dialog">
+  //       <div className="modal-content">
+  //         <div className="modal-header">
+  //           <h5 className="modal-title">Modal title</h5>
+  //           <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  //         </div>
+  //         <div className="modal-body">
+  //           <p>Modal body text goes here.</p>
+  //         </div>
+  //         <div className="modal-footer">
+  //           <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+  //           <button type="button" className="btn btn-primary">Save changes</button>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   </div>
+  // )
+  
+  if (isLoading) return (
     <div className="spinner-border m-5" role="status">
       <span className="visually-hidden">Loading...</span>
     </div>
@@ -35,11 +44,15 @@ function Home () {
   return (
     <>
       {
-        products.map(product => {
-          return (
-            <ProductCard key="product.id" product={ product } />
-          )
-        })
+        isLoading ? (
+          <div className="spinner-border m-5" role="status"></div>
+        ) : (
+          products.products.map(product => {
+            return (
+              <ProductCard key="product.id" product={ product } isLoading={isLoading} />
+            )
+          })
+        )
       }
     </>
   )
