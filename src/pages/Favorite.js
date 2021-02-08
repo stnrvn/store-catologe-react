@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import FavoriteCard from '../components/FavoriteCard'
+import ProductCard from '../components/ProductCard'
 import { useEffect } from 'react'
 
 function Favorite () {
@@ -13,7 +13,7 @@ function Favorite () {
     <>
       {
         favorites.map((favorite) => {
-          return <FavoriteCard key={ favorite.id } favorite={favorite} />
+          return <ProductCard key={ favorite.id } data={favorite} />
         })
       }
     </>
